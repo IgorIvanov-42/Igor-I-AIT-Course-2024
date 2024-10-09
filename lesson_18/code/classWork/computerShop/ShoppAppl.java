@@ -22,7 +22,7 @@ public class ShoppAppl {
         computers[2] = new Computer("i7",8, 256, "Asus", 1200);
         computers[3] = new Computer("i7",8, 256, "Asus", 1200);
         computers[4] = new Laptop("m2", 8, 512, "AppleAirBook", 2200, 14, 1.5, 10, "Silver");
-        computers[5] = new Smartphone("mobail", 8, 128, "Google pixel",450, 6, 400, 48, "black", 2738394043484859493l);
+        computers[5] = new Smartphone("mobail", 8, 128, "Google pixel",450, 6, 0.40, 48, "black", 2738394043484859493l);
         int totalSsd = 0;
         for (int i = 0; i < computers.length; i++) {
             totalSsd += computers[i].getSsd();
@@ -41,6 +41,17 @@ public class ShoppAppl {
             System.out.println(computers[i]);
 
         }
+
+        //Найти общий вес всех мобильных устройств в ComputerShop.
+
+        double totalWeight = 0;
+        for (int i = 0; i < computers.length; i++) {
+            if (computers[i] instanceof Laptop){
+                Laptop myLaptop = (Laptop) computers[i];
+                totalWeight += myLaptop.getWeight();
+            }
+        }
+        System.out.println("Total weight= " + totalWeight);
 
 
     }// end of main
