@@ -15,6 +15,10 @@ public class Employee extends Human{
         this.workExperience = workExperience;
     }
 
+    public Employee(int i, String n2, String ln2, int i1, boolean b) {
+        super();
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -30,4 +34,6 @@ public class Employee extends Human{
                 ", eyeColor='" + eyeColor + '\'' +
                 '}';
     }
+
+
 }// end of class

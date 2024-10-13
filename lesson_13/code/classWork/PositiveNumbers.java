@@ -6,7 +6,7 @@
 
 package classWork;
 
-import classwork.ArrayMetods.ArrayMethods;
+import classWork.ArrayMetods.ArrayMethods;
 
 public class PositiveNumbers {
     public static void main(String[] args) {

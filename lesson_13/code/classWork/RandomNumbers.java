@@ -9,7 +9,7 @@
 
 package classWork;
 
-import classwork.ArrayMetods.ArrayMethods;
+import classWork.ArrayMetods.ArrayMethods;
 
 public class RandomNumbers {
     public static void main(String[] args) {

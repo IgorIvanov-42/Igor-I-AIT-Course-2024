@@ -17,6 +17,10 @@ public class Human {
         this.eyeColor = eyeColor;
     }
 
+    public Human() {
+
+    }
+
     @Override
     public String toString() {
         return "Human{" +
