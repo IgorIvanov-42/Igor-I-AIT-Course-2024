@@ -34,8 +34,11 @@ public class Book {
 
     private boolean counDigit(long isbn) {
        //String.valueOf(isbn).length() == 13;
+
         int count = 0;
-        while (isbn / 10 != 0){
+        long temp = isbn;// чтобы не испортить значение isbn
+        while ((temp != 0)){
+            temp = temp / 10;
             count++;
         }
         return count == ISBN_LENGTH;
@@ -47,7 +50,11 @@ public class Book {
 
     // TODO предусмотреть защиту по поводу 13 цифр и в этом случае
     public void setIsbn(long isbn) {
-        this.isbn = isbn;
+        if (checkIsbn(isbn) > 0) {
+            this.isbn = checkIsbn(isbn);
+        }else {
+            System.out.println("ISBN is not correct.");
+        }
     }
     public String getTitle() {
         return title;

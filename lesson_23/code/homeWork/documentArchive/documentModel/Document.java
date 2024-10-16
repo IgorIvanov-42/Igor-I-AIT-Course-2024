@@ -1,49 +1,48 @@
 package homeWork.documentArchive.documentModel;
 
-import classWork.bookLibrary.model.Book;
-import homeWork.documentArchive.archiveController.Archive;
-
 import java.util.Objects;
 
 public class Document {
 
-    public static final int ISBN_LENGTH = 10;
-    // field
-    private long isbn;
+    public static final int DOCUMENT_ID_LENGTH = 10; // Константа для длины ID
+
+    // Поля класса
     private String title;
     private String author;
-    private int yearOfPublishing;
+    private long documentId; // Уникальный номер документа (10 цифр)
 
-    public Document(long isbn, String title, String author, int yearOfPublishing) {
-        this.isbn = checkIsbn(isbn);;
+    // Конструктор
+    public Document(String title, String author, long documentId) {
         this.title = title;
         this.author = author;
-        this.yearOfPublishing = yearOfPublishing;
+        this.documentId = checkDocumentId(documentId); // Проверка номера документа
     }
 
-    private long checkIsbn(long isbn){
-        //проверить длину isbn по количеству цифр в этом числе
-        if (counDigit(isbn)){
-            return isbn;
+    // Метод для проверки корректности номера документа
+    private long checkDocumentId(long documentId) {
+        if (countDigits(documentId)) {
+            return documentId;
         }
-        return -1;// сигнал того, что isbn не верный
+        throw new IllegalArgumentException("Invalid Document ID. It must be exactly 10 digits.");
     }
 
-    private boolean counDigit(long isbn) {
-        //String.valueOf(isbn).length() == 13;
-        int count = 0;
-        while (isbn / 10 != 0){
+    // Метод для подсчета количества цифр в номере документа
+    //temp — временная переменная, которой присваивается значение documentId.
+    // Используем временную переменную, чтобы не изменять сам documentId,
+    // так как оригинальное значение может еще понадобиться.
+    private boolean countDigits(long documentId) {
+        int count = 0;  // temp derzatel Id
+        long temp = documentId;
+        while (temp != 0) {
+            temp /= 10;
             count++;
         }
-        return count == ISBN_LENGTH;
+        return count == DOCUMENT_ID_LENGTH;
     }
 
-    public long getIsbn() {
-        return isbn;
-    }
 
-    public void setIsbn(long isbn) {
-        this.isbn = isbn;
+    public long getDocumentId() {
+        return documentId;
     }
 
     public String getTitle() {
@@ -62,34 +61,24 @@ public class Document {
         this.author = author;
     }
 
-    public int getYearOfPublishing() {
-        return yearOfPublishing;
-    }
-
-    public void setYearOfPublishing(int yearOfPublishing) {
-        this.yearOfPublishing = yearOfPublishing;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Archive archive)) return false;
-        return isbn == archive.isbn;
+        if (!(o instanceof Document document)) return false;
+        return documentId == document.documentId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(isbn);
+        return Objects.hash(documentId);
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Document{");
-        sb.append("isbn=").append(isbn);
-        sb.append(", title='").append(title).append('\'');
-        sb.append(", author='").append(author).append('\'');
-        sb.append(", yearOfPublishing=").append(yearOfPublishing);
-        sb.append('}');
-        return sb.toString();
+        return "Document{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", documentId=" + documentId +
+                '}';
     }
-}// end of class
+}

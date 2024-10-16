@@ -8,13 +8,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
+
     Library library;
+
     Book[] books;
     int size = 0;
 
     @BeforeEach
     void setUp() {
+
         library = new Library(5);
+
+        books =new Book[5];
+
         books[0] = new Book("1984", "Oruell", 1_111_111_111_110l, 2010);
         books[1] = new Book("T1", "A1", 1_111_111_111_111l, 2011);
         books[2] = new Book("T2", "A2", 1_111_111_111_112l, 2009);
@@ -22,6 +28,12 @@ class LibraryTest {
 
         // TODO
         //положить объекты в массив, который "внутри" объекта library
+        for (int i = 0; i < books.length -1; i++) {
+            library.addBook(books[i]);
+            
+        }
+        
+        
     }
 
     @Test
@@ -30,4 +42,25 @@ class LibraryTest {
         assertEquals(books[0], library.findBook(1_111_111_111_110l));// find existed book
         assertNull(library.findBook(1_111_111_111_119l));// find absent book
     }
+    @Test
+    void removeBookTest(){
+        // remove existed book
+        assertEquals(books[0], library.removeBook(1_111_111_111_110L));
+        assertEquals( 3, library.size());
+        // remove absent book
+        assertNull(library.removeBook(1_111_111_111_119L));
+    }
+
+
+    @Test
+    void sizeTest(){
+        assertEquals(4, library.size());
+    }
+
+    @Test
+    void printBooksTest(){
+        System.out.println("=========================");
+        library.printBooks();
+    }
+
 }
