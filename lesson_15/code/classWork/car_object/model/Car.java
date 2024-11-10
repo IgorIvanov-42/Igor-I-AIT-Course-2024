@@ -81,5 +81,7 @@ public class Car {
     }
 
 
-
+    public <U> U getCompany() {
+        return null;
+    }
 }// end of class
