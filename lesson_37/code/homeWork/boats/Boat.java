@@ -1,7 +1,5 @@
 package homeWork.boats;
 
-import java.util.*;
-import java.util.stream.Collectors;
 
 class Boat {
     private String manufacturer;
