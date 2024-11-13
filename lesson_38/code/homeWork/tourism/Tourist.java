@@ -22,6 +22,6 @@ public class Tourist {
 
     @Override
     public String toString() {
-        return "Name: " + name + "Countries: " + countries.toString();
+        return "Name: " + name + " . " + "Countries: " + countries.toString();
     }
 }// end of class
